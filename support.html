@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="color-scheme" content="light dark" />
+		<meta
+			name="description"
+			content="Support Retime with a one-time or monthly contribution."
+		/>
+		<title>Support Retime</title>
+		<link
+			rel="icon"
+			href="https://michaeljuskowicz.github.io/retime-privacy-policy/action128.png"
+		/>
+		<style>
+			:root {
+				--accent: #34d399;
+				--accent-ink: #06251b;
+				--bg: #080d10;
+				--bg-soft: #0d1317;
+				--panel: rgba(13, 19, 23, 0.88);
+				--panel-strong: #11191e;
+				--text: #f3f7f5;
+				--muted: #98a6a0;
+				--quiet: #73817c;
+				--line: rgba(224, 238, 232, 0.13);
+				--line-strong: rgba(224, 238, 232, 0.22);
+				--shadow: 0 28px 90px rgba(0, 0, 0, 0.3);
+				--page-glow: color-mix(in srgb, var(--accent) 10%, transparent);
+				font-family:
+					Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+					"Segoe UI", sans-serif;
+				color-scheme: dark;
+			}
+
+			html[data-theme="light"] {
+				--accent-ink: #041d15;
+				--bg: #f4f8f6;
+				--bg-soft: #edf4f0;
+				--panel: rgba(255, 255, 255, 0.88);
+				--panel-strong: #f7fbf9;
+				--text: #111b17;
+				--muted: #5c6a64;
+				--quiet: #77857f;
+				--line: rgba(20, 48, 37, 0.13);
+				--line-strong: rgba(20, 48, 37, 0.22);
+				--shadow: 0 28px 90px rgba(23, 54, 43, 0.12);
+				color-scheme: light;
+			}
+
+			@media (prefers-color-scheme: light) {
+				html:not([data-theme]) {
+					--accent-ink: #041d15;
+					--bg: #f4f8f6;
+					--bg-soft: #edf4f0;
+					--panel: rgba(255, 255, 255, 0.88);
+					--panel-strong: #f7fbf9;
+					--text: #111b17;
+					--muted: #5c6a64;
+					--quiet: #77857f;
+					--line: rgba(20, 48, 37, 0.13);
+					--line-strong: rgba(20, 48, 37, 0.22);
+					--shadow: 0 28px 90px rgba(23, 54, 43, 0.12);
+					color-scheme: light;
+				}
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			html {
+				min-width: 320px;
+				background: var(--bg);
+			}
+
+			body {
+				min-height: 100vh;
+				margin: 0;
+				color: var(--text);
+				background:
+					radial-gradient(circle at 12% 45%, var(--page-glow), transparent 29rem),
+					var(--bg);
+				transition: background-color 180ms ease, color 180ms ease;
+			}
+
+			a {
+				color: inherit;
+			}
+
+			button,
+			a {
+				-webkit-tap-highlight-color: transparent;
+			}
+
+			:focus-visible {
+				outline: 3px solid color-mix(in srgb, var(--accent) 68%, white);
+				outline-offset: 4px;
+			}
+
+			.site-header {
+				position: relative;
+				z-index: 3;
+				border-bottom: 1px solid var(--line);
+			}
+
+			.site-header__inner,
+			.page,
+			.site-footer__inner {
+				width: min(1320px, calc(100% - 64px));
+				margin-inline: auto;
+			}
+
+			.site-header__inner {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				min-height: 84px;
+			}
+
+			.brand {
+				display: inline-flex;
+				align-items: center;
+				gap: 12px;
+				font-size: 16px;
+				font-weight: 740;
+				letter-spacing: -0.01em;
+				text-decoration: none;
+			}
+
+			.brand img {
+				width: 34px;
+				height: 34px;
+				border-radius: 9px;
+			}
+
+			.header-note {
+				color: var(--quiet);
+				font-size: 13px;
+			}
+
+			.page {
+				display: grid;
+				grid-template-columns: minmax(0, 0.92fr) minmax(600px, 1.08fr);
+				gap: clamp(48px, 5vw, 80px);
+				align-items: center;
+				min-height: calc(100vh - 166px);
+				padding-block: clamp(64px, 9vh, 112px);
+			}
+
+			.intro {
+				position: relative;
+				isolation: isolate;
+			}
+
+			.intro::before,
+			.intro::after {
+				position: absolute;
+				z-index: -1;
+				left: -17vw;
+				top: 53%;
+				width: min(43vw, 610px);
+				aspect-ratio: 1;
+				border: 1px solid color-mix(in srgb, var(--accent) 16%, transparent);
+				border-radius: 50%;
+				content: "";
+				transform: translateY(-32%);
+				pointer-events: none;
+			}
+
+			.intro::after {
+				left: -11vw;
+				top: 58%;
+				width: min(32vw, 430px);
+				border-color: var(--line);
+			}
+
+			.eyebrow {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				margin: 0 0 24px;
+				color: var(--muted);
+				font-size: 12px;
+				font-weight: 760;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+			}
+
+			.eyebrow::before {
+				width: 7px;
+				height: 7px;
+				border-radius: 50%;
+				background: var(--accent);
+				box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 11%, transparent);
+				content: "";
+			}
+
+			h1 {
+				max-width: 680px;
+				margin: 0;
+				font-size: clamp(64px, 6vw, 96px);
+				font-weight: 790;
+				letter-spacing: -0.072em;
+				line-height: 0.92;
+			}
+
+			.accent-stop {
+				color: var(--accent);
+			}
+
+			.intro__copy {
+				max-width: 570px;
+				margin: 34px 0 0;
+				color: var(--muted);
+				font-size: clamp(17px, 1.35vw, 21px);
+				line-height: 1.65;
+			}
+
+			.support-panel {
+				position: relative;
+				overflow: hidden;
+				border: 1px solid var(--line-strong);
+				border-radius: 28px;
+				background: var(--panel);
+				box-shadow: var(--shadow);
+				backdrop-filter: blur(20px);
+			}
+
+			.support-panel::before {
+				position: absolute;
+				top: -160px;
+				right: -140px;
+				width: 360px;
+				height: 360px;
+				border-radius: 50%;
+				background: color-mix(in srgb, var(--accent) 9%, transparent);
+				filter: blur(12px);
+				content: "";
+				pointer-events: none;
+			}
+
+			.support-section {
+				position: relative;
+				padding: clamp(34px, 4vw, 54px);
+			}
+
+			.support-section + .support-section {
+				border-top: 1px solid var(--line);
+			}
+
+			.section-kicker {
+				margin: 0 0 8px;
+				color: var(--accent);
+				font-size: 12px;
+				font-weight: 780;
+				letter-spacing: 0.11em;
+				text-transform: uppercase;
+			}
+
+			h2 {
+				margin: 0;
+				font-size: clamp(27px, 3vw, 40px);
+				font-weight: 745;
+				letter-spacing: -0.04em;
+			}
+
+			.section-copy {
+				margin: 10px 0 26px;
+				color: var(--muted);
+				font-size: 15px;
+				line-height: 1.55;
+			}
+
+			.primary-cta {
+				display: grid;
+				grid-template-columns: auto 1fr auto auto;
+				gap: 15px;
+				align-items: center;
+				width: 100%;
+				min-height: 74px;
+				padding: 15px 20px;
+				border: 1px solid color-mix(in srgb, var(--accent) 58%, transparent);
+				border-radius: 16px;
+				color: var(--accent-ink);
+				background: var(--accent);
+				font-size: 17px;
+				font-weight: 760;
+				text-decoration: none;
+				box-shadow: 0 12px 32px color-mix(in srgb, var(--accent) 18%, transparent);
+				transition: transform 160ms ease, filter 160ms ease, box-shadow 160ms ease;
+			}
+
+			.primary-cta:hover {
+				transform: translateY(-2px);
+				filter: saturate(1.08) brightness(1.04);
+				box-shadow: 0 16px 38px color-mix(in srgb, var(--accent) 25%, transparent);
+			}
+
+			.primary-cta svg,
+			.tier svg,
+			.site-footer svg {
+				width: 21px;
+				height: 21px;
+				fill: none;
+				stroke: currentColor;
+				stroke-linecap: round;
+				stroke-linejoin: round;
+				stroke-width: 1.8;
+			}
+
+			.primary-cta__hint {
+				font-size: 12px;
+				font-weight: 680;
+				opacity: 0.68;
+			}
+
+			.tier-list {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				overflow: hidden;
+				border: 1px solid var(--line-strong);
+				border-radius: 17px;
+				background: var(--panel-strong);
+			}
+
+			.tier {
+				position: relative;
+				display: flex;
+				min-width: 0;
+				min-height: 142px;
+				padding: 22px 18px 19px;
+				flex-direction: column;
+				align-items: flex-start;
+				justify-content: flex-end;
+				color: inherit;
+				text-decoration: none;
+				transition: background 150ms ease, color 150ms ease;
+			}
+
+			.tier + .tier {
+				border-left: 1px solid var(--line);
+			}
+
+			.tier:hover,
+			.tier.is-popular {
+				background: color-mix(in srgb, var(--accent) 10%, transparent);
+			}
+
+			.tier:hover {
+				color: var(--accent);
+			}
+
+			.popular-badge {
+				position: absolute;
+				top: 0;
+				left: 50%;
+				padding: 7px 11px;
+				border: 1px solid color-mix(in srgb, var(--accent) 42%, transparent);
+				border-top: 0;
+				border-radius: 0 0 10px 10px;
+				color: var(--accent);
+				background: color-mix(in srgb, var(--accent) 9%, var(--panel-strong));
+				font-size: 10px;
+				font-weight: 800;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				transform: translateX(-50%);
+			}
+
+			.tier__amount {
+				display: flex;
+				gap: 4px;
+				align-items: baseline;
+				font-size: clamp(24px, 2.2vw, 32px);
+				font-weight: 790;
+				letter-spacing: -0.05em;
+				white-space: nowrap;
+			}
+
+			.tier__amount small {
+				color: var(--muted);
+				font-size: 11px;
+				font-weight: 650;
+				letter-spacing: 0;
+			}
+
+			.tier__label {
+				margin-top: 7px;
+				color: var(--muted);
+				font-size: 12px;
+				line-height: 1.3;
+			}
+
+			.manage-note {
+				margin: 16px 0 0;
+				color: var(--quiet);
+				font-size: 12px;
+				line-height: 1.5;
+			}
+
+			.manage-note a {
+				text-underline-offset: 3px;
+			}
+
+			.site-footer {
+				border-top: 1px solid var(--line);
+			}
+
+			.site-footer__inner {
+				display: flex;
+				gap: 24px;
+				align-items: center;
+				justify-content: space-between;
+				min-height: 82px;
+				color: var(--quiet);
+				font-size: 12px;
+			}
+
+			.secure-note,
+			.footer-links {
+				display: flex;
+				gap: 9px;
+				align-items: center;
+			}
+
+			.footer-links {
+				gap: 20px;
+				white-space: nowrap;
+			}
+
+			.footer-links a {
+				text-decoration: none;
+			}
+
+			.footer-links a:hover {
+				color: var(--text);
+			}
+
+			.reveal {
+				animation: rise-in 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+			}
+
+			.support-panel.reveal {
+				animation-delay: 90ms;
+			}
+
+			@keyframes rise-in {
+				from {
+					opacity: 0;
+					transform: translateY(18px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			@media (max-width: 940px) {
+				.page {
+					grid-template-columns: 1fr;
+					gap: 48px;
+					align-items: start;
+					min-height: auto;
+				}
+
+				.intro__copy {
+					max-width: 680px;
+				}
+
+				.intro::before,
+				.intro::after {
+					display: none;
+				}
+			}
+
+			@media (max-width: 620px) {
+				.site-header__inner,
+				.page,
+				.site-footer__inner {
+					width: min(100% - 32px, 1320px);
+				}
+
+				.site-header__inner {
+					min-height: 72px;
+				}
+
+				.header-note {
+					display: none;
+				}
+
+				.page {
+					gap: 36px;
+					padding-block: 46px 56px;
+				}
+
+				h1 {
+					font-size: clamp(54px, 17vw, 78px);
+				}
+
+				.intro__copy {
+					margin-top: 24px;
+					font-size: 16px;
+				}
+
+				.support-panel {
+					border-radius: 22px;
+				}
+
+				.support-section {
+					padding: 30px 22px;
+				}
+
+				.primary-cta {
+					grid-template-columns: auto 1fr auto;
+					min-height: 68px;
+					padding-inline: 17px;
+					font-size: 15px;
+				}
+
+				.primary-cta__hint {
+					display: none;
+				}
+
+				.tier-list {
+					grid-template-columns: 1fr;
+				}
+
+				.tier {
+					min-height: 91px;
+					padding: 18px 22px;
+					justify-content: center;
+				}
+
+				.tier + .tier {
+					border-top: 1px solid var(--line);
+					border-left: 0;
+				}
+
+				.popular-badge {
+					top: 50%;
+					right: 16px;
+					left: auto;
+					border: 1px solid color-mix(in srgb, var(--accent) 42%, transparent);
+					border-radius: 999px;
+					transform: translateY(-50%);
+				}
+
+				.site-footer__inner {
+					padding-block: 24px;
+					flex-direction: column;
+					align-items: flex-start;
+				}
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				*,
+				*::before,
+				*::after {
+					scroll-behavior: auto !important;
+					animation-duration: 0.01ms !important;
+					animation-iteration-count: 1 !important;
+					transition-duration: 0.01ms !important;
+				}
+			}
+		</style>
+		<script>
+			(() => {
+				const params = new URLSearchParams(location.search);
+				const theme = params.get("theme");
+				const accents = {
+					teal: "#34d399",
+					sky: "#38bdf8",
+					indigo: "#818cf8",
+					violet: "#a78bfa",
+					fuchsia: "#e879f9",
+					rose: "#fb7185",
+					orange: "#fb923c",
+					amber: "#fbbf24",
+				};
+				if (theme === "light" || theme === "dark") {
+					document.documentElement.dataset.theme = theme;
+				}
+				const accent = accents[params.get("accent")];
+				if (accent) {
+					document.documentElement.style.setProperty("--accent", accent);
+				}
+			})();
+		</script>
+	</head>
+	<body>
+		<header class="site-header">
+			<div class="site-header__inner">
+				<a class="brand" href="./" aria-label="Retime home">
+					<img
+						src="https://michaeljuskowicz.github.io/retime-privacy-policy/action128.png"
+						alt=""
+					/>
+					<span>Retime</span>
+				</a>
+				<span class="header-note">Independent, private, and free to use</span>
+			</div>
+		</header>
+
+		<main class="page">
+			<section class="intro reveal" aria-labelledby="page-title">
+				<p class="eyebrow">Support Retime</p>
+				<h1 id="page-title">Support the time you save<span class="accent-stop">.</span></h1>
+				<p class="intro__copy">
+					Retime is free and independently built. If it makes working across time
+					zones a little easier, you can help keep the project moving with a
+					one-time or monthly contribution.
+				</p>
+			</section>
+
+			<article class="support-panel reveal" aria-label="Contribution options">
+				<section class="support-section">
+					<p class="section-kicker">Any amount</p>
+					<h2>One-time contribution</h2>
+					<p class="section-copy">Choose any amount that feels right.</p>
+					<a
+						class="primary-cta"
+						href="https://donate.stripe.com/cNi7sE3mYdWX9WUe0t2ZO00"
+						target="_blank"
+						rel="noreferrer"
+					>
+						<svg viewBox="0 0 24 24" aria-hidden="true">
+							<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z" />
+						</svg>
+						<span>Choose an amount</span>
+						<span class="primary-cta__hint">Secure checkout</span>
+						<svg viewBox="0 0 24 24" aria-hidden="true">
+							<path d="M5 12h14M13 6l6 6-6 6" />
+						</svg>
+					</a>
+				</section>
+
+				<section class="support-section">
+					<p class="section-kicker">A little each month</p>
+					<h2>Monthly support</h2>
+					<p class="section-copy">Pick a fixed amount. It renews monthly until canceled.</p>
+					<div class="tier-list" aria-label="Monthly contribution amounts">
+						<a
+							class="tier"
+							href="https://donate.stripe.com/7sYcMYf5GcSTb0YbSl2ZO01"
+							target="_blank"
+							rel="noreferrer"
+							aria-label="Contribute 3 dollars each month"
+						>
+							<span class="tier__amount">$3 <small>/ month</small></span>
+							<span class="tier__label">A small boost</span>
+						</a>
+						<a
+							class="tier is-popular"
+							href="https://donate.stripe.com/dRm14g3mY4mn1qo7C52ZO02"
+							target="_blank"
+							rel="noreferrer"
+							aria-label="Contribute 8 dollars each month, popular option"
+						>
+							<span class="popular-badge">Popular</span>
+							<span class="tier__amount">$8 <small>/ month</small></span>
+							<span class="tier__label">Steady support</span>
+						</a>
+						<a
+							class="tier"
+							href="https://donate.stripe.com/bJe14g3mY5qr4CA5tX2ZO03"
+							target="_blank"
+							rel="noreferrer"
+							aria-label="Contribute 15 dollars each month"
+						>
+							<span class="tier__amount">$15 <small>/ month</small></span>
+							<span class="tier__label">Extra generous</span>
+						</a>
+					</div>
+					<p class="manage-note">
+						Need to change or cancel monthly support?
+						<a href="mailto:michaeljuskowicz@gmail.com?subject=Retime%20monthly%20support">Email me</a>.
+					</p>
+				</section>
+			</article>
+		</main>
+
+		<footer class="site-footer">
+			<div class="site-footer__inner">
+				<div class="secure-note">
+					<svg viewBox="0 0 24 24" aria-hidden="true">
+						<rect x="4" y="10" width="16" height="11" rx="2" />
+						<path d="M8 10V7a4 4 0 0 1 8 0v3" />
+					</svg>
+					<span>Payments are handled securely by Stripe. Retime never sees your payment details.</span>
+				</div>
+				<nav class="footer-links" aria-label="Footer links">
+					<a href="./">Privacy policy</a>
+					<a href="https://chromewebstore.google.com/detail/retime/ocohimlmcklbckoebbjlpgccfoldllic">Retime on Chrome</a>
+				</nav>
+			</div>
+		</footer>
+	</body>
+</html>
